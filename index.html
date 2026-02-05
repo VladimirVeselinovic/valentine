@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Teodora ❤️</title>
+
+<style>
+:root{
+    --pink:#ff4d6d;
+    --purple:#a855f7;
+    --blue:#60a5fa;
+    --gold:#fbbf24;
+}
+
+body{
+    height:100vh;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+    background-size:400% 400%;
+    animation:gradient 12s ease infinite;
+    font-family: Arial, sans-serif;
+    text-align:center;
+    overflow:hidden;
+}
+
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.box{
+    background:white;
+    padding:35px 40px;
+    border-radius:22px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+    max-width:420px;
+    z-index:2;
+}
+
+h1{color:var(--pink); margin-bottom:5px;}
+h2{color:#555; font-weight:normal;}
+
+.agreement{
+    text-align:left;
+    background:#fff7fb;
+    border-left:5px solid var(--pink);
+    padding:15px 18px;
+    border-radius:12px;
+    margin:20px 0;
+    font-size:15px;
+}
+
+button{
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    margin:10px;
+    transition:.2s;
+}
+
+#yes1{
+    background:linear-gradient(135deg, var(--pink), var(--gold));
+    color:white;
+}
+
+#yes2{
+    background:linear-gradient(135deg, var(--blue), var(--purple));
+    color:white;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* srca */
+.heart{
+    position:absolute;
+    color:rgba(255,255,255,.7);
+    font-size:20px;
+    animation:float 8s linear infinite;
+    z-index:1;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh) scale(1); opacity:1;}
+    to{transform:translateY(-10vh) scale(1.8); opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<audio id="music" loop>
+    <source src="stereolove.mp3" type="audio/mpeg">
+</audio>
+
+<div class="box" onclick="startMusic()">
+    <h1>Teodora 💖</h1>
+    <h2>Will you be my Valentine, Nefer? 😌</h2>
+
+    <div class="agreement">
+        <b>By continuing, you agree to:</b><br><br>
+        💕 Be my Valentine<br>
+        🍫 Receive kisses, hugs, and chocolate<br>
+        😌 Have an amazing day with me
+    </div>
+
+    <button id="yes1" onclick="yesClick()">YES 💕</button>
+    <button id="yes2" onclick="playfulYes()">YES, OF COURSE 😏</button>
+</div>
+
+<script>
+let musicStarted=false;
+
+function startMusic(){
+    if(!musicStarted){
+        document.getElementById("music").play().catch(()=>{});
+        musicStarted=true;
+    }
+}
+
+function playfulYes(){
+    startMusic();
+    const btn=document.getElementById("yes2");
+    btn.innerText="GOOD CHOICE 😏";
+    btn.style.transform="scale(1.15)";
+    setTimeout(yesClick,600);
+}
+
+function yesClick(){
+    document.body.innerHTML=`
+        <div style="
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            font-family:Arial;
+            color:white;
+            text-align:center;
+        ">
+            <h1>You just made me very happy, Nefer 💕</h1>
+            <h2>Happy Valentine’s Day, Teodora 😘</h2>
+            <p>I can’t wait to spend it with you.</p>
+        </div>
+    `;
+}
+
+/* srca generator */
+setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerText="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(16+Math.random()*20)+"px";
+    heart.style.animationDuration=(6+Math.random()*6)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),12000);
+},600);
+</script>
+
+</body>
+</html>
